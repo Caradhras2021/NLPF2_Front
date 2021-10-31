@@ -1,0 +1,13 @@
+thead td {
+    color: #2eca6a;
+    font-weight: bold;
+}
+
+td {
+    padding: 10px;
+    border: 2px solid black;
+}
+
+table {
+    font-size: large;
+}
