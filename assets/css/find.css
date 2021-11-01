@@ -1,0 +1,13 @@
+th {
+    color: #2eca6a;
+    font-weight: bold;
+}
+
+td, th {
+    padding: 10px;
+    border: 2px solid black;
+}
+
+table {
+    font-size: large;
+}
