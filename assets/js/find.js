@@ -23,9 +23,17 @@ for (const i in data) {
     for (const c in columns) {
         const column = columns[c]
         const td = document.createElement('td');
-        console.log(c);
         td.innerHTML = elt[column];
         tr.appendChild(td)
     }
     table.appendChild(tr);
+}
+
+const search = () => {
+    const zip = document.getElementById("zip").value;
+    const type = document.getElementById("type").value;
+    const surface = document.getElementById("surface").value;
+    const rooms = document.getElementById("rooms").value;
+    const price = document.getElementById("price").value;
+    //ToDo : API call with parameters
 }
