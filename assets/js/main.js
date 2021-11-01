@@ -134,3 +134,16 @@
   });
 
 })()
+
+const login = () => {
+  const user = document.getElementById("mail").value;
+  const pwd = document.getElementById('pwd').value;
+  if (user !== pwd) {
+    return
+  }
+  localStorage.setItem('userConnected', user);
+}
+
+const logout = () => {
+  localStorage.removeItem('userConnected');
+}
