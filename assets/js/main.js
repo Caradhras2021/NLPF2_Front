@@ -152,4 +152,12 @@ const login = () => {
 }
 
 const logButton = document.getElementById('logButton');
-logButton.innerHTML = localStorage.getItem('userConnected') ? '<i class="bi bi-box-arrow-left"></i>' : '<i class="bi bi-person-fill"></i>';
+const userDiv = document.getElementById('user');
+const user = localStorage.getItem('userConnected');
+if (user) {
+  logButton.innerHTML = '<i class="bi bi-box-arrow-left"></i>';
+  userDiv.innerHTML = user;
+}
+else {
+  logButton.innerHTML = '<i class="bi bi-person-fill"></i>';
+}
