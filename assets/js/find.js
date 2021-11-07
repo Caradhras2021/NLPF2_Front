@@ -2,6 +2,25 @@ const table = document.getElementById("table-content");
 
 const columns = ["price", "address", "city", "zip"];
 
+//Begin API Call
+
+var xhr = new XMLHttpRequest();
+xhr.onload = function () {
+
+	if (xhr.status >= 200 && xhr.status < 300) {
+
+      const res = JSON.parse(xhr.response);
+      console.log(res);
+    
+	} else {
+      console.log('The request failed!');
+	}
+};
+
+xhr.open('GET', 'https://localhost:6666/home/one');
+xhr.send()
+//End API Call
+
 const data = [
     {
         price: "270 000€",
