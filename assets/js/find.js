@@ -6,6 +6,22 @@ const tableContainer = document.getElementById("table-container");
 const table = tableContainer.querySelector("table");
 const infos = tableContainer.querySelector("p")
 
+const formatData = (data) => {
+    console.log(data);
+    for (const elt in data) {
+        //Date formatting
+        data[elt]['date_mutation'] = data[elt]['date_mutation'].split('T')[0]
+        //Price formatting
+        let price = Math.round(parseInt(data[elt]['valeur_fonciere'])).toString() + '€';
+        let i = price.length - 1;
+        while (i >= 0) {
+            price = price.slice(0, i) + ' ' + price.slice(i);
+            i -= 3;
+        }
+        data[elt]['valeur_fonciere'] = price;
+    }
+}
+
 const fillTable = (data) => {
     tableContent.innerHTML = "";
     table.style.display = "block";
@@ -21,6 +37,11 @@ const fillTable = (data) => {
             td.innerHTML = elt[column];
             tr.appendChild(td)
         }
+        //Add link to map
+        const td = document.createElement('td');
+        td.innerHTML = `<a href="https://maps.google.fr/maps?q=${elt['latitude']},${elt['longitude']}">Voir sur la carte</a>`
+        tr.appendChild(td);
+        //Add row
         tableContent.appendChild(tr);
     }    
 }
@@ -54,11 +75,11 @@ const filterSearch = (request) => {
     })
     .then(response => response.json())
     .then(json => {
+        formatData(json);
         fillInfos(json);
         fillTable(json);
     });
 }
-
 
 const bodyObj =
     {
