@@ -119,12 +119,6 @@
     <section>
       <form class="form-a container">
         <div class="row">
-          <div class="col-md-12 mb-2">
-            <div class="form-group">
-              <label class="pb-2" for="Type">Mots clés</label>
-              <input type="text" class="form-control form-control-lg form-control-a" placeholder="Mots clés">
-            </div>
-          </div>
           <div class="col-md-6 mb-2">
             <div class="form-group mt-3">
               <label class="pb-2" for="Type">Type</label>
@@ -197,26 +191,20 @@
             </table>
           </div>
         </div>
-        <div class="row">
+        <div class="row" id="pagination" style="display: none;">
           <div class="col-sm-12">
             <nav class="pagination-a">
               <ul class="pagination justify-content-end">
-                <li class="page-item disabled">
-                  <a class="page-link" href="#" tabindex="-1">
+                <li id="left-page" class="page-item">
+                  <a class="page-link" onclick="changePage(-1)" tabindex="-1">
                     <span class="bi bi-chevron-left"></span>
                   </a>
                 </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">1</a>
-                </li>
                 <li class="page-item active">
-                  <a class="page-link" href="#">2</a>
+                  <a id="page" class="page-link"></a>
                 </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">3</a>
-                </li>
-                <li class="page-item next">
-                  <a class="page-link" href="#">
+                <li id="right-page" class="page-item next">
+                  <a class="page-link" onclick="changePage(1)">
                     <span class="bi bi-chevron-right"></span>
                   </a>
                 </li>

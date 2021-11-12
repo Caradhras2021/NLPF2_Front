@@ -1,10 +1,14 @@
 const url = 'http://localhost:3000/';
 const columns = ["valeur_fonciere", "adresse_numero", "adresse_nom_voie", "nom_commune", "code_postal", "nombre_pieces_principales", "type_local", "date_mutation"];
-const data = []
+let data = []
+let page = 1;
+let pageMax = 1;
 const tableContent = document.getElementById("table-content");
 const tableContainer = document.getElementById("table-container");
 const table = tableContainer.querySelector("table");
 const infos = tableContainer.querySelector("p");
+const pagination = document.getElementById("pagination");
+const pageItem = document.getElementById("page");
 
 const headers = {
     'Content-type': 'application/json; charset=UTF-8',
@@ -66,12 +70,23 @@ const filterSearch = (request) => {
     .then(response => response.json())
     .then(json => {
         formatData(json);
+        data = json;
         fillInfos(json);
-        fillTable(json);
+        //Paginatin Init
+        page = 1;
+        pageMax = Math.floor(json.length / 8) + 1;
+        pageItem.innerHTML = `${page}/${pageMax}`; 
+        pagination.style.display = "block";
+        //Table Init
+        nbElt = page == pageMax ? data.length % 8 : 8;
+        copy = [... data].splice((page - 1) * 8, nbElt);
+        fillTable(copy);
+        pagination.scrollIntoView({ behavior: "smooth", block: "nearest"})
     });
 }
 
-const search = () => {
+const search = () => { 
+    //Query creation
     const zip = document.getElementById("zip").value;
     let type = document.getElementById("type").value;
     if (type === "Local industriel") { type = "Local industriel. commercial ou assimilé" }
@@ -87,5 +102,26 @@ const search = () => {
             "type_local": type === "Tous les types" ? undefined : type,
         }
     }
+    //API Call
     filterSearch(request)
+}
+
+const changePage = (value) => {
+    page += value;
+    pageItem.innerHTML = `${page}/${pageMax}`;
+    nbElt = page == pageMax ? data.length % 8 : 8;
+    copy = [... data].splice((page - 1) * 8, nbElt);
+    fillTable(copy);
+    if (page == 1) {
+        document.getElementById("left-page").classList.add("disabled");
+    } 
+    else {
+        document.getElementById("left-page").classList.remove("disabled");
+    }
+    if (page == pageMax) {
+        document.getElementById("right-page").classList.add("disabled");
+    } 
+    else {
+        document.getElementById("right-page").classList.remove("disabled");
+    }
 }
