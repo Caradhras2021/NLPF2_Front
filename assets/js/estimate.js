@@ -3,6 +3,8 @@ const columns = ["valeur_fonciere", "adresse_numero", "adresse_nom_voie", "nom_c
 const data = []
 const resultContainer = document.getElementById("result-container");
 const infos = resultContainer.querySelector("p");
+const sliderContainer = resultContainer.querySelector('div');
+const slider = sliderContainer.querySelector('input');
 
 const headers = {
     'Content-type': 'application/json; charset=UTF-8',
@@ -24,6 +26,19 @@ const fillInfos = (data) => {
     <br>
     Prix maximum au m² : ${data['deltaMinMax']['max']}€
     <br>`
+    sliderContainer.style.display = "block";
+    slider.max = data['deltaMinMax']['max'];
+    slider.min = data['deltaMinMax']['min'];
+    slider.value = data['averagePrice'];
+    slider.oninput();
+}
+
+slider.oninput = () => {
+    const surface = document.getElementById("surface").value;
+    const estimation = document.getElementById("estimation");
+    const squaremeter = document.getElementById("squaremeter");
+    estimation.innerHTML = "Estimation du prix du bien : " + +surface * slider.value + '€';
+    squaremeter.innerHTML = "Prix au mètre carré : " + slider.value + '€';
 }
 
 const filterEstimate = (request) => {
@@ -52,7 +67,7 @@ const estimate = () => {
             "code_postal": zip ? parseInt(zip): undefined,
             "nombre_pieces_principales": rooms ? parseInt(rooms) : undefined,
             "valeur_fonciere": price ? parseInt(price) : undefined,
-            "lot1_surface_carrez": surface ? parseInt(surface): undefined,
+            //"lot1_surface_carrez": surface ? parseInt(surface): undefined,
             "type_local": type === "Tous les types" ? undefined : type,
         }
     }
