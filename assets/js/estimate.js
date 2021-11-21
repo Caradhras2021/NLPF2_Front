@@ -43,7 +43,7 @@ slider.oninput = () => {
 
 const filterEstimate = (request) => {
     console.log(request)
-    fetch(url + 'home/averagePrice/apartment', {
+    fetch(url + `home/averagePrice/${request['type_local']}`, {
         method: 'POST',
         body: JSON.stringify(request),
         headers: headers
@@ -57,8 +57,10 @@ const filterEstimate = (request) => {
 
 const estimate = () => {
     const zip = document.getElementById("zip").value;
-    let type = document.getElementById("type").value;
-    if (type === "Local industriel") { type = "Local industriel. commercial ou assimilé" }
+    let  type = "apartment";
+    if (document.getElementById("type").value == "Maison") {
+        type = "house";
+    }
     const surface = document.getElementById("surface").value;
     const rooms = document.getElementById("rooms").value;
     const price = document.getElementById("price").value;
@@ -67,9 +69,9 @@ const estimate = () => {
             "code_postal": zip ? parseInt(zip): undefined,
             "nombre_pieces_principales": rooms ? parseInt(rooms) : undefined,
             "valeur_fonciere": price ? parseInt(price) : undefined,
-            //"lot1_surface_carrez": surface ? parseInt(surface): undefined,
-            "type_local": type === "Tous les types" ? undefined : type,
-        }
+            "surface_reelle_bati": surface ? parseInt(surface): undefined,
+        },
+        "type_local": type === "Tous les types" ? undefined : type,
     }
     filterEstimate(request)
 }

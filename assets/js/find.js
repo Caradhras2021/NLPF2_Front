@@ -62,7 +62,7 @@ const fillInfos = (data) => {
 
 const filterSearch = (request) => {
     console.log(request)
-    fetch(url + 'home/testFilters', {
+    fetch(url + 'home/filters', {
         method: 'POST',
         body: JSON.stringify(request),
         headers: headers
@@ -73,6 +73,7 @@ const filterSearch = (request) => {
         data = json;
         fillInfos(json);
         //Paginatin Init
+        
         page = 1;
         pageMax = Math.floor(json.length / 8) + 1;
         pageItem.innerHTML = `${page}/${pageMax}`; 
@@ -98,7 +99,7 @@ const search = () => {
             "code_postal": zip ? parseInt(zip): undefined,
             "nombre_pieces_principales": rooms ? parseInt(rooms) : undefined,
             "valeur_fonciere": price ? parseInt(price) : undefined,
-            "lot1_surface_carrez": surface ? parseInt(surface): undefined,
+            "surface_reelle_bati": surface ? parseInt(surface): undefined,
             "type_local": type === "Tous les types" ? undefined : type,
         }
     }
