@@ -89,6 +89,26 @@ const filterSearch = (request) => {
         copy = [... data].splice((page - 1) * 8, nbElt);
         fillTable(copy);
         pagination.scrollIntoView({ behavior: "smooth", block: "nearest"})
+
+        const log = {
+            filters: {
+                'login':  "admin",
+                'email_address':  "admin@epita.fr",
+                'typeResearch': "Recherche",
+                'type': request.filters['type_local'],
+                'rooms': request.filters['nombre_pieces_principales'],
+                'surface': request.filters['surface_reelle_bati'],
+                'code_postal': request.filters['code_postal'],
+                'budget': request.filters['valeur_fonciere'],
+                'resultat': undefined,
+            }
+        }
+        console.log(log)
+        fetch(url + 'logs', {
+            method: 'POST',
+            body: JSON.stringify(log),
+            headers: headers
+        })
     });
 }
 
