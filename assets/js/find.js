@@ -1,5 +1,5 @@
 const url = 'http://localhost:3000/';
-const columns = ["valeur_fonciere", "adresse_numero", "adresse_nom_voie", "nom_commune", "code_postal", "nombre_pieces_principales", "type_local", "date_mutation"];
+const columns = ["valeur_fonciere", "adresse_numero", "adresse_nom_voie", "nom_commune", "code_postal", "nombre_pieces_principales", "surface_reelle_bati", "type_local", "date_mutation"];
 let data = []
 let page = 1;
 let pageMax = 1;
@@ -30,6 +30,12 @@ const formatData = (data) => {
             i -= 3;
         }
         data[elt]['valeur_fonciere'] = price;
+        //Surface formatting
+        if (data[elt]['surface_reelle_bati'] == null) {
+            data[elt]['surface_reelle_bati'] = "N/A"
+        } else {
+            data[elt]['surface_reelle_bati'] += " m²";
+        }
     }
 }
 
