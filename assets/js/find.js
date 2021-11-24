@@ -91,7 +91,7 @@ const filterSearch = (request) => {
         pagination.scrollIntoView({ behavior: "smooth", block: "nearest"})
 
         const log = {
-            filters: {
+            logs: {
                 'login':  "admin",
                 'email_address':  "admin@epita.fr",
                 'typeResearch': "Recherche",
@@ -100,7 +100,7 @@ const filterSearch = (request) => {
                 'surface': request.filters['surface_reelle_bati'],
                 'code_postal': request.filters['code_postal'],
                 'budget': request.filters['valeur_fonciere'],
-                'resultat': undefined,
+                'resultat': data.length.toString(),
             }
         }
         console.log(log)
