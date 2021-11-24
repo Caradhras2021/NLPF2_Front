@@ -63,7 +63,14 @@ const fillTable = (data) => {
 }
 
 const fillInfos = (data) => {
-    infos.innerHTML = data.length + " résultat(s) trouvé(s)";
+    infos.innerHTML = "<strong>" + data.length + " résultat(s) trouvé(s)</strong>";
+}
+
+const fillInflationRate = (data) => {
+    infos.innerHTML += '<br>';
+    infos.innerHTML += 'Prix moyen au m² en 2019 : <strong>' + data['averagePrice2019'] + '€</strong><br>';
+    infos.innerHTML += 'Prix moyen au m² en 2020 : <strong>' + data['averagePrice2020'] + '€</strong><br>';
+    infos.innerHTML += 'Pourcentage d\'inflation: <strong>' + data['inflationRate'] + '%</strong><br>';
 }
 
 const filterSearch = (request) => {
@@ -103,11 +110,21 @@ const filterSearch = (request) => {
                 'resultat': data.length.toString(),
             }
         }
-        console.log(log)
         fetch(url + 'logs', {
             method: 'POST',
             body: JSON.stringify(log),
             headers: headers
+        })
+
+        fetch(url + 'home/inflationRate', {
+            method: 'POST',
+            body: JSON.stringify(request),
+            headers: headers
+        })
+        .then(response => response.json())
+        .then(inflation => {
+            fillInflationRate(inflation)
+            console.log(inflation);
         })
     });
 }
