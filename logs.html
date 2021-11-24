@@ -96,8 +96,8 @@
         <div class="row">
           <div class="col-md-12 col-lg-8">
             <div class="title-single-box">
-              <h1 class="title-single">Estimer un bien</h1>
-              <span class="color-text-a">Vendez au prix le plus juste</span>
+              <h1 class="title-single">Administration</h1>
+              <span class="color-text-a">Rechercher parmi les logs</span>
             </div>
           </div>
           <div class="col-md-12 col-lg-4">
@@ -107,7 +107,7 @@
                   <a href="index.html">Accueil</a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
-                  Estimation
+                  Administration
                 </li>
               </ol>
             </nav>
@@ -122,40 +122,18 @@
         <div class="row">
           <div class="col-md-6 mb-2">
             <div class="form-group mt-3">
-              <label class="pb-2" for="Type">Type</label>
-              <select class="form-control form-select form-control-a" id="type">
-                <option>Tous les types</option>
-                <option>Appartement</option>
-                <option>Maison</option>
-              </select>
+              <label class="pb-2" for="bedrooms">Mail</label>
+              <input type="email" class="form-control form-control-a" id="mail">
             </div>
           </div>
           <div class="col-md-6 mb-2">
             <div class="form-group mt-3">
-              <label class="pb-2" for="city">Code postal</label>
-              <input type="number" class="form-control form-control-a" id="zip">
-            </div>
-          </div>
-          <div class="col-md-6 mb-2">
-            <div class="form-group mt-3">
-              <label class="pb-2" for="bedrooms">Nombre de pièces</label>
-              <input type="number" class="form-control form-control-a" id="rooms">
-            </div>
-          </div>
-          <div class="col-md-6 mb-2">
-            <div class="form-group mt-3">
-              <label class="pb-2" for="garages">Surface</label>
-              <input type="number" class="form-control form-control-a" id="surface">
-            </div>
-          </div>
-          <div class="col-md-6 mb-2">
-            <div class="form-group mt-3">
-              <label class="pb-2" for="price">Budget</label>
-              <input type="number" class="form-control form-control-a" id="price">
+              <label class="pb-2" for="garages">Identifiant</label>
+              <input type="text" class="form-control form-control-a" id="id">
             </div>
           </div>
           <div class="col-md-12">
-            <button type="button" onclick="estimate()" class="btn btn-b">Lancer l'estimation</button>
+            <button type="button" onclick="fetchLogs()" class="btn btn-b">Rechercher</button>
             <br><br><br>
           </div>
         </div>
@@ -163,19 +141,29 @@
     </section>
 
 
-    <!-- =======  EStimation Result ======= -->
+    <!-- =======  Logs Result ======= -->
     <section class="news-grid grid">
       <div class="container">
-        <div class="row">
-          <div class="col-md-12" id="result-container">
-            <p></p>
-            <div class="slidecontainer" style="display: none;">
-              <br>
-              <h6 id="estimation">Estimation du prix du bien : </h6> 
-              <input type="range" class="slider" id="myRange">
-              <h6 id="squaremeter">Prix au mètre carré : </h6>
-            </div>
-          </div>
+        <div class="row" id="table-container">
+            <table style="display: none; margin-bottom: 30px;">
+                <thead>
+                    <tr>
+                        <th>Identifiant</th>
+                        <th>Mail</th>
+                        <th>Type</th>
+                        <th>Surface (m²)</th>
+                        <th>Pièce(s)</th>
+                        <th>Logement</th>
+                        <th>Date</th>
+                        <th>Code Postal</th>
+                        <th>Résultat(s)</th>
+                        <th>Budget</th>
+                    </tr>
+                </thead>
+                <tbody id="table-content">
+                    <tr></tr>
+                </tbody>
+            </table>
         </div>
        </div>
     </section><!-- End Estimation Grid-->
@@ -240,7 +228,7 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
-  <script src="assets/js/estimate.js"></script>
+  <script src="assets/js/logs.js"></script>
 
 </body>
 
