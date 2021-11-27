@@ -1,4 +1,4 @@
-const url = 'http://localhost:3000/';
+const url = 'https://flexxnath.la.salo.pe/';
 const columns = ["logins", "email_address", "type_research", "surface", "pieces", "types", "dates", "code_postal", "resultat", "budget"];
 const data = []
 const resultContainer = document.getElementById("result-container");

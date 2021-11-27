@@ -1,4 +1,4 @@
-const url = 'http://localhost:3000/';
+const url = 'https://flexxnath.la.salo.pe/';
 const columns = ["valeur_fonciere", "adresse_numero", "adresse_nom_voie", "nom_commune", "code_postal", "nombre_pieces_principales", "surface_reelle_bati", "type_local", "date_mutation"];
 let data = []
 let page = 1;
