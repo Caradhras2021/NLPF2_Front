@@ -11,3 +11,8 @@ td, th {
 table {
     font-size: large;
 }
+
+iframe {
+    border: #2eca6a solid 3px;
+    padding: 10px;
+}
