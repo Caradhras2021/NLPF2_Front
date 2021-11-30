@@ -136,6 +136,17 @@
 
 })()
 
+const login = () => {
+  const user = document.getElementById("mail").value;
+  const pwd = document.getElementById('pwd').value;
+  if (user !== pwd) {
+    return
+  }
+  localStorage.setItem('userConnected', user);
+}
+
+const logButton = document.getElementById('logButton');
+const userDiv = document.getElementById('user');
 const user = localStorage.getItem('userConnected');
 if (user) {
   logButton.innerHTML = '<i class="bi bi-box-arrow-left"></i>';
