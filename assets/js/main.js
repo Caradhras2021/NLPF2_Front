@@ -135,3 +135,12 @@
   });
 
 })()
+
+const user = localStorage.getItem('userConnected');
+if (user) {
+  logButton.innerHTML = '<i class="bi bi-box-arrow-left"></i>';
+  userDiv.innerHTML = user;
+}
+else {
+  logButton.innerHTML = '<i class="bi bi-person-fill"></i>';
+}
