@@ -52,5 +52,5 @@ const countLogs = (data) => {
     document.getElementById("apart").innerHTML += `<td  style="--start: 0; --size: ${counts[1] / max}; --color: rgb(190, 130, 255);"> <span class="data"></span>${counts[1]}</td>`
     document.getElementById("other").innerHTML =  `<th scope="row">Autre</th>`
     document.getElementById("other").innerHTML += `<td  style="--start: 0; --size: ${counts[2] / max}; --color: rgb(130, 190, 255);"> <span class="data"></span>${counts[2]}</td>`
-    
+
 }

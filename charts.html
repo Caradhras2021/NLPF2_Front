@@ -22,9 +22,12 @@
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
+  <link rel="stylesheet" href="https://unpkg.com/charts.css/dist/charts.min.css">
+
   <!-- CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
   <link href="assets/css/find.css" rel="stylesheet">
+  <link href="assets/css/estimate.css" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: EstateAgency - v4.6.0
@@ -58,7 +61,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link active" href="find.html">Recherche</a>
+            <a class="nav-link" href="find.html">Recherche</a>
           </li>
 
           <li class="nav-item">
@@ -66,11 +69,11 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link " href="logs.html">Log</a>
+            <a class="nav-link" href="logs.html">Log</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="charts.html">Graphs</a>
+            <a class="nav-link active" href="charts.html">Graphs</a>
           </li>
         </ul>
       </div>
@@ -90,8 +93,8 @@
         <div class="row">
           <div class="col-md-12 col-lg-8">
             <div class="title-single-box">
-              <h1 class="title-single">Rechercher un bien</h1>
-              <span class="color-text-a">Trouvez celui de vos rêves</span>
+              <h1 class="title-single">Administration</h1>
+              <span class="color-text-a">Visualisation des données</span>
             </div>
           </div>
           <div class="col-md-12 col-lg-4">
@@ -101,7 +104,7 @@
                   <a href="index.html">Accueil</a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
-                  Recherche
+                  Administration
                 </li>
               </ol>
             </nav>
@@ -110,106 +113,26 @@
       </div>
     </section><!-- End Intro Single-->
 
-    <!-- ======= Property Search Section ======= -->
-    <section>
-      <form class="form-a container">
-        <div class="row">
-          <div class="col-md-6 mb-2">
-            <div class="form-group mt-3">
-              <label class="pb-2" for="Type">Type</label>
-              <select class="form-control form-select form-control-a" id="type">
-                <option>Tous les types</option>
-                <option>Appartement</option>
-                <option>Maison</option>
-                <option>Dépendance</option>
-                <option>Local industriel</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-6 mb-2">
-            <div class="form-group mt-3">
-              <label class="pb-2" for="city">Code postal</label>
-              <input type="number" class="form-control form-control-a" id="zip">
-            </div>
-          </div>
-          <div class="col-md-6 mb-2">
-            <div class="form-group mt-3">
-              <label class="pb-2" for="bedrooms">Nombre de pièces</label>
-              <input type="number" class="form-control form-control-a" id="rooms">
-            </div>
-          </div>
-          <div class="col-md-6 mb-2">
-            <div class="form-group mt-3">
-              <label class="pb-2" for="garages">Surface (m² )</label>
-              <input type="number" class="form-control form-control-a" id="surface">
-            </div>
-          </div>
-          <div class="col-md-6 mb-2">
-            <div class="form-group mt-3">
-              <label class="pb-2" for="price">Budget</label>
-              <input type="number" class="form-control form-control-a" id="price">
-            </div>
-          </div>
-          <div class="col-md-12">
-            <button type="button" onclick="search()" class="btn btn-b">Lancer la recherche</button>
-            <br><br><br>
-          </div>
-        </div>
-      </form>
-    </section>
-
-
-    <!-- =======  Blog Grid ======= -->
+    <!-- =======  Logs Result ======= -->
     <section class="news-grid grid">
       <div class="container">
         <div class="row">
-          <div class="col-md-12" id="table-container">
-            <p></p>
-            <br>
-            <table style="display: none;">
-                <thead>
-                    <tr>
-                        <th style="min-width: 120px;">Prix</th>
-                        <th>N°</th>
-                        <th>Rue</th>
-                        <th>Ville</th>
-                        <th>Code Postal</th>
-                        <th>Pièces</th>
-                        <th>Surface</th>
-                        <th>Type</th>
-                        <th>Date</th>
-                        <th>Carte</th>
-                    </tr>
-                </thead>
-                <tbody id="table-content">
-                    <tr></tr>
-                </tbody>
-            </table>
-          </div>
+            <iframe src="charts/use.html" style="height: 300px !important;">
+            </iframe>
         </div>
-        <div class="row" id="pagination" style="display: none;">
-          <div class="col-sm-12">
-            <nav class="pagination-a">
-              <ul class="pagination justify-content-end">
-                <li id="left-page" class="page-item">
-                  <a class="page-link" onclick="changePage(-1)" tabindex="-1">
-                    <span class="bi bi-chevron-left"></span>
-                  </a>
-                </li>
-                <li class="page-item active">
-                  <a id="page" class="page-link"></a>
-                </li>
-                <li id="right-page" class="page-item next">
-                  <a class="page-link" onclick="changePage(1)">
-                    <span class="bi bi-chevron-right"></span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
+        <br>
+        <div class="row">
+            <iframe src="charts/type.html" style="height: 300px !important;">
+            </iframe>
         </div>
-      </div>
-    </section><!-- End Blog Grid-->
+        <br>
+       <div class="row">
+        <iframe src="charts/surface.html" style="height: 350px !important;">
+        </iframe>
+       </div>
+       <br>
+   </div>
+    </section><!-- End Estimation Grid-->
 
   </main><!-- End #main -->
 
@@ -266,12 +189,10 @@
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
-  <script src="assets/js/find.js"></script>
 
 </body>
 

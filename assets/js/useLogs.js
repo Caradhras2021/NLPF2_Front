@@ -47,7 +47,6 @@ const countLogs = (data) => {
     for (let i = 0; i < data.length; i++) {
         const element = data[i];
         const date = new Date(element["dates"].split(',')[0]).getUTCDate();
-        console.log(date);
         switch (date) {
             case d1:
                 counts[0]++;
@@ -74,7 +73,6 @@ const countLogs = (data) => {
         }
     }
     const max = Math.max(...counts);    
-    console.log(counts);
     for (let i = 0; i < 6; i++) {
         const date = new Date()
         date.setDate(day1.getUTCDate() - i)
