@@ -89,6 +89,12 @@
   let body = select('body');
   on('click', '.navbar-toggle-box', function(e) {
     e.preventDefault()
+    if (localStorage.getItem('userConnected')){
+      //Logout and reload page
+      localStorage.removeItem('userConnected');
+      window.location.reload(false);
+      return
+    } 
     body.classList.add('box-collapse-open')
     body.classList.remove('box-collapse-closed')
   })
