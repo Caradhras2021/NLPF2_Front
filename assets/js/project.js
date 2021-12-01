@@ -70,8 +70,8 @@ const fillInfos = (data) => {
     infos.innerHTML += "<p>Nombre de mensualités max : <strong>" + creditInfos['dureeMin']; + "</strong></p>";
     infos.innerHTML += "<p>Nombre d'années max : <strong>" + creditInfos['dureeMinYear']; + "</strong></p>";
     infos.innerHTML += "<p>Mensualité max : <strong>" + creditInfos['mensualiteMax']; + "</strong></p>";
-    infos.innerHTML += "<p>Crédit max : <strong>" + creditMax + "</strong></p>";
-    infos.innerHTML += "<p>Valeur maximum : <strong>" + valueMax + "</strong></p>";
+    infos.innerHTML += "<p>Crédit max : <strong>" + creditMax + "€</strong></p>";
+    infos.innerHTML += "<p>Valeur maximum : <strong>" + valueMax + "€</strong></p>";
 }
 
 const filterSearch = (request) => {

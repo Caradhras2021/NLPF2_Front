@@ -38,9 +38,18 @@ const fillInfos = (data) => {
 slider.oninput = () => {
     const surface = document.getElementById("surface").value;
     const price  = +surface * slider.value
-    const futurePrice = price + (+surface * inflation * 3);
+    let futurePrice = 0;
+    if (inflation <= 0) {
+        inflation *= -1;
+        inflation /= 100;
+        futurePrice = (1 - (inflation / 5))
+    }
+    else {
+        inflation /= 100;
+        futurePrice = (1 + (inflation / 5));
+    }
     estimation.innerHTML = "Estimation de la valeur foncière du bien : " +  price + '€';
-    estimation.innerHTML += "<br>Estimation de la valeur foncière en 2025 : " + futurePrice + '€';
+    estimation.innerHTML += "<br>Estimation de la valeur foncière en 2025 : " + Math.round(futurePrice * price) + '€';
     squaremeter.innerHTML = "Prix au mètre carré : " + slider.value + '€';
 }
 
@@ -48,7 +57,7 @@ const fillInflationRate = (data) => {
     infos.innerHTML += 'Prix moyen au m² en 2019 : <strong>' + data['averagePrice2019'] + '€</strong><br>';
     infos.innerHTML += 'Prix moyen au m² en 2020 : <strong>' + data['averagePrice2020'] + '€</strong><br><br>';
     infos.innerHTML += 'Pourcentage d\'inflation: <strong>' + data['inflationRate'] + '%</strong><br>';
-    inflation = data['inflationPrice'];
+    inflation = data['inflationRate'];
 }
 
 const filterEstimate = (request) => {
