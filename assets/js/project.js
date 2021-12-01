@@ -40,9 +40,38 @@ const fillTable = (data) => {
     }    
 }
 
+const formatData = (data) => {
+    for (const elt in data) {
+        //Date formatting
+        data[elt]['date_mutation'] = data[elt]['date_mutation'].split('T')[0]
+        //Price formatting
+        let price = Math.round(parseInt(data[elt]['valeur_fonciere'])).toString() + '€';
+        let i = price.length - 1;
+        while (i >= 0) {
+            price = price.slice(0, i) + ' ' + price.slice(i);
+            i -= 3;
+        }
+        data[elt]['valeur_fonciere'] = price;
+        //Surface formatting
+        if (data[elt]['surface_reelle_bati'] == null) {
+            data[elt]['surface_reelle_bati'] = "N/A"
+        } else {
+            data[elt]['surface_reelle_bati'] += " m²";
+        }
+    }
+}
+
 const fillInfos = (data) => {
     len = data['homeEntities'].length
-    infos.innerHTML = "<strong>" + len + " résultat(s) trouvé(s)</strong>";
+    const creditInfos = data['creditInfos'];
+    [creditMax, valueMax] = [creditInfos['montantCreditMax'], creditInfos['priceMax']];
+    infos.innerHTML = "<strong>" + len + " résultat(s) trouvé(s)</strong><br><br>";
+    infos.innerHTML += "<strong>Crédit :<br></strong>";
+    infos.innerHTML += "<p>Nombre de mensualités max : <strong>" + creditInfos['dureeMin']; + "</strong></p>";
+    infos.innerHTML += "<p>Nombre d'années max : <strong>" + creditInfos['dureeMinYear']; + "</strong></p>";
+    infos.innerHTML += "<p>Mensualité max : <strong>" + creditInfos['mensualiteMax']; + "</strong></p>";
+    infos.innerHTML += "<p>Crédit max : <strong>" + creditMax + "</strong></p>";
+    infos.innerHTML += "<p>Valeur maximum : <strong>" + valueMax + "</strong></p>";
 }
 
 const filterSearch = (request) => {
@@ -54,8 +83,9 @@ const filterSearch = (request) => {
     })
     .then(response => response.json())
     .then(json => {
+        console.log(json);
         data = json['homeEntities']
-        console.log(data);
+        formatData(data)
         fillInfos(json);
         //Paginatin Init
         

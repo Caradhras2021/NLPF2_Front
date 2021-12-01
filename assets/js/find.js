@@ -18,7 +18,6 @@ const headers = {
 }
 
 const formatData = (data) => {
-    console.log(data);
     for (const elt in data) {
         //Date formatting
         data[elt]['date_mutation'] = data[elt]['date_mutation'].split('T')[0]
