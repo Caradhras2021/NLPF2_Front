@@ -36,6 +36,37 @@
 
 <body>
 
+    <!-- ======= Property Connexion Section ======= -->
+    <div class="click-closed"></div>
+    <div class="box-collapse">
+      <div class="title-box-d">
+        <h3 class="title-d">Se connecter</h3>
+      </div>
+      <span class="close-box-collapse right-boxed bi bi-x"></span>
+      <div class="box-collapse-wrap form">
+        <form class="form-a">
+          <div class="row">
+            <div class="col-md-6 mb-2">
+              <div class="form-group mt-3">
+                <label class="pb-2" for="Type">Adresse Mail</label>
+                <input type="mail" class="form-control form-control-lg form-control-a" placeholder="jean.bono@mail.com" id="mail">
+              </div>
+            </div>
+            <div class="col-md-6 mb-2">
+              <div class="form-group mt-3">
+                <label class="pb-2" for="Type">Mot de Passe</label>
+                <input type="password" class="form-control form-control-lg form-control-a" id="pwd">
+              </div>
+            </div>
+            <div class="col-md-12">
+              <br>
+              <button onclick="login()" class="btn btn-b">Connexion</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div><!-- End Connection Section -->>
+
   <!-- ======= Header/Navbar ======= -->
   <nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
     <div class="container">
@@ -75,8 +106,10 @@
         </ul>
       </div>
 
-      <button type="button" class="btn btn-b-n navbar-toggle-box navbar-toggle-box-collapse" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01">
-        <i class="bi bi-search"></i>
+      <div id="user" style="margin-right: 10px;"></div>
+
+      <button id="logButton" type="button" class="btn btn-b-n navbar-toggle-box navbar-toggle-box-collapse" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01">
+        <i class="bi bi-person-fill"></i>
       </button>
 
     </div>
