@@ -1,4 +1,3 @@
-const url = 'https://flexxnath.la.salo.pe/';
 const columns = ["valeur_fonciere", "adresse_numero", "adresse_nom_voie", "nom_commune", "code_postal", "nombre_pieces_principales", "surface_reelle_bati", "type_local", "date_mutation"];
 let data = []
 let page = 1;
@@ -11,10 +10,10 @@ const pagination = document.getElementById("pagination");
 const pageItem = document.getElementById("page");
 
 const headers = {
-    'Content-type': 'application/json; charset=UTF-8',
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': "DELETE, POST, GET, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, Access-Control-Allow-Origin"
+    //'Content-type': 'application/json; charset=UTF-8',
+    //'Access-Control-Allow-Origin': '*',
+    //'Access-Control-Allow-Methods': "DELETE, POST, GET, OPTIONS",
+    //"Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, Access-Control-Allow-Origin"
 }
 
 const formatData = (data) => {
@@ -74,16 +73,17 @@ const fillInflationRate = (data) => {
 
 const filterSearch = (request) => {
     console.log(request)
-    fetch(url + 'home/filters', {
-        method: 'POST',
-        body: JSON.stringify(request),
+    fetch('https://gyi5y43xa1.execute-api.eu-west-3.amazonaws.com/prod/home/all', {
+        method: 'GET',
         headers: headers
     })
     .then(response => response.json())
     .then(json => {
+        json = json['transactions']
+        console.log(json);
         formatData(json);
         data = json;
-        fillInfos(json);
+        //fillInfos(json);
         //Paginatin Init
         
         page = 1;
@@ -96,7 +96,7 @@ const filterSearch = (request) => {
         fillTable(copy);
         pagination.scrollIntoView({ behavior: "smooth", block: "nearest"})
 
-        const log = {
+        /*const log = {
             logs: {
                 'login':  "admin",
                 'email_address':  "admin@epita.fr",
@@ -124,7 +124,7 @@ const filterSearch = (request) => {
         .then(inflation => {
             fillInflationRate(inflation)
             console.log(inflation);
-        })
+        })*/
     });
 }
 
